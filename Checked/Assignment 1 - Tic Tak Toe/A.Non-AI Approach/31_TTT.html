@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tic Tac Toe</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: black;
+        color: white;
+      }
+
+      h1 {
+        margin-top: 20px;
+      }
+
+      #board1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 150px;
+        margin-left: 500px;
+        width: 400px;
+      }
+
+      .cell {
+        width: 100px;
+        height: 100px;
+        border: 1px solid white;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        cursor: pointer;
+        color: white;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <div id="board1"></div>
+
+    <script>
+      let currentPlayer = prompt("Choose 'X' or 'O':");
+while (currentPlayer !== 'X' && currentPlayer !== 'O') {
+  currentPlayer = prompt("Invalid input! Choose 'X' or 'O':");
+}
+
+let gameOver = false;
+const board = ['', '', '', '', '', '', '', '', ''];
+
+
+function checkWinner() {
+  const winningCombinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+    [0, 4, 8], [2, 4, 6] 
+  ];
+
+  for (const combination of winningCombinations) {
+    const [a, b, c] = combination;
+    if (board[a] === board[b] && board[a] === board[c]) {
+      return board[a];
+    }
+  }
+
+  if (!board.includes('')) {
+    return 'tie';
+  }
+
+  return null;
+}
+
+
+function handleMove(index) {
+  if (board[index] === '' && !gameOver) {
+    board[index] = currentPlayer;
+    Board();
+
+    const winner = checkWinner();
+    if (winner) {
+      gameOver = true;
+      if (winner === 'tie') {
+        alert('It\'s a tie!');
+      } else {
+        alert(`Player ${winner} wins!`);
+      }
+    } else {
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    }
+  }
+}
+
+
+function Board() {
+  const boardContainer = document.getElementById('board1');
+  boardContainer.innerHTML = '';
+
+  for (let i = 0; i < 9; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    cell.textContent = board[i];
+    cell.addEventListener('click', () => handleMove(i));
+    boardContainer.appendChild(cell);
+  }
+}
+
+
+Board();
+
+        
+    </script>
+  </body>
+</html>
