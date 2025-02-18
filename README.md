@@ -1,0 +1,2 @@
+This repository contains the practical implementations and exercises from my Artificial Intelligence (AI) lab sessions. It includes hands-on projects, algorithms, and experiments involving AI techniques such as machine learning, deep learning, natural language processing, and computer vision. Each project focuses on applying AI concepts to real-world problems, demonstrating both foundational and advanced methods. The goal is to build a strong practical understanding of AI through experimentation and coding.
+
